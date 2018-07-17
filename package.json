@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Leon Chen <leonchen.nju@gmail.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
+    "url": "https://github.com/samotoo/my-blog/issues"
   },
   "dependencies": {
     "gatsby": "next",
@@ -42,15 +42,16 @@
     "gh-pages": "^1.1.0",
     "prettier": "^1.12.0"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/samotoo/my-blog#readme",
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "blog"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/samotoo/my-blog.git"
   },
   "scripts": {
     "dev": "gatsby develop",
