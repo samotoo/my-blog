@@ -1,5 +1,5 @@
 # My Personal Blog
-My personal blog powered by [Gatsby](https://github.com/gatsbyjs/gatsby)
+My personal blog powered by [Gatsby](https://github.com/gatsbyjs/gatsby).
 
 ## Features
 
