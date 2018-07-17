@@ -3,9 +3,8 @@ module.exports = {
     title: 'Leon\'s Blog',
     author: 'Leon Chen',
     description: 'My personal blog.',
-    siteUrl: 'https://gatsbyjs.github.io/gatsby-starter-blog/',
+    siteUrl: 'https://samotoo.netlify.com/',
   },
-  pathPrefix: '/gatsby-starter-blog',
   plugins: [
     {
       resolve: `gatsby-source-contentful`,
