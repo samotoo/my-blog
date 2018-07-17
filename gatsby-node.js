@@ -1,26 +1,19 @@
-const _ = require('lodash')
-const Promise = require('bluebird')
-const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
+const _ = require('lodash');
+const Promise = require('bluebird');
+const path = require('path');
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
-
+  const { createPage } = actions;
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
     resolve(
       graphql(
         `
           {
-            allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+            allContentfulPost(limit: 1000) {
               edges {
                 node {
-                  fields {
-                    slug
-                  }
-                  frontmatter {
-                    title
-                  }
+                  title
+                  slug
                 }
               }
             }
@@ -28,41 +21,28 @@ exports.createPages = ({ graphql, actions }) => {
         `
       ).then(result => {
         if (result.errors) {
-          console.log(result.errors)
+          console.log(result.errors);
           reject(result.errors)
         }
 
         // Create blog posts pages.
-        const posts = result.data.allMarkdownRemark.edges;
+        const postTemplate = path.resolve('./src/templates/blog-post.js');
 
-        _.each(posts, (post, index) => {
-          const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-          const next = index === 0 ? null : posts[index - 1].node;
-
+        // We want to create a post page for each blog post.
+        _.each(result.data.allContentfulPost.edges, edge => {
+          // Gatsby uses Redux to manage its internal state.
+          // Plugins and sites can use functions like "createPage" to interact with Gatsby.
           createPage({
-            path: post.node.fields.slug,
-            component: blogPost,
+            // Each page is required to have a `path` as well as a template component. The `context` is optional but is
+            // necessary if you need to pass parameter to graphql query.
+            path: `/posts/${edge.node.slug}/`,
+            component: postTemplate,
             context: {
-              slug: post.node.fields.slug,
-              previous,
-              next,
+              slug: edge.node.slug
             },
           })
         })
       })
     )
   })
-}
-
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
-}
+};

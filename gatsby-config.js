@@ -1,17 +1,18 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Starter Blog',
-    author: 'Kyle Mathews',
-    description: 'A starter blog demonstrating what Gatsby can do.',
+    title: 'Leon\'s Blog',
+    author: 'Leon Chen',
+    description: 'My personal blog.',
     siteUrl: 'https://gatsbyjs.github.io/gatsby-starter-blog/',
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-source-contentful`,
       options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
+        spaceId: `n60m2sizc79s`,
+        accessToken: `121a555da7e950df298c9f621a44624eab5d6b78f2a687692674238b8db58af8`,
+        host: `cdn.contentful.com`,
       },
     },
     {

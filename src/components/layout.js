@@ -5,9 +5,9 @@ import { rhythm, scale } from '../utils/typography'
 
 class Template extends React.Component {
   render() {
-    const { location, children } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
-    let header
+    const { location, children } = this.props;
+    const rootPath = `${__PATH_PREFIX__}/`;
+    let header;
 
     if (location.pathname === rootPath) {
       header = (
@@ -26,7 +26,7 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            Gatsby Starter Blog
+            Leon's Blog
           </Link>
         </h1>
       )
@@ -47,7 +47,7 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            Gatsby Starter Blog
+            Leon's Blog
           </Link>
         </h3>
       )
