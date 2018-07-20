@@ -5,6 +5,12 @@ githubTheme.overrideThemeStyles = () => ({
   'a.gatsby-resp-image-link': {
     boxShadow: 'none',
   },
+  '.gatsby-resp-image-figcaption': {
+    textAlign: 'center',
+    fontSize: '95%',
+    paddingTop: '4px',
+    paddingBottom: '8px'
+  }
 });
 
 delete githubTheme.googleFonts;

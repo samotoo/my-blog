@@ -20,9 +20,10 @@ module.exports = {
         plugins: [
           'gatsby-remark-autolink-headers',
           {
-            resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-images-contentful`,
             options: {
               maxWidth: 590,
+              showCaptions: true
             },
           },
           {
