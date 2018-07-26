@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from '../components/head';
+import BackToTop from '../components/back-to-top';
 import get from 'lodash/get'
 import { graphql } from 'gatsby';
 
@@ -30,6 +31,7 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
+        <BackToTop />
       </Layout>
     )
   }
