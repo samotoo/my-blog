@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link, graphql} from 'gatsby';
 import get from 'lodash/get';
-import Helmet from 'react-helmet';
 import Layout from '../components/layout';
+import Head from '../components/head';
 import {rhythm} from '../utils/typography';
 import icon32 from '../../static/logo/favicon-32.png';
 
@@ -13,12 +13,7 @@ class BlogIndex extends React.Component {
 
     return (
       <Layout location={this.props.location}>
-        <Helmet
-          title={siteTitle}
-          link={[
-            {rel: 'shortcut icon', type: 'image/png', href: `${icon32}`}
-          ]}
-        />
+        <Head title={siteTitle} />
         {posts.map(({node}) => {
           const title = get(node, 'title');
           return (

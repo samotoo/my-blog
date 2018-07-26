@@ -1,5 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import Head from '../components/head';
 import get from 'lodash/get'
 import { graphql } from 'gatsby';
 
@@ -13,7 +13,7 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location}>
-        <Helmet title={`${post.title} | ${siteTitle}`} />
+        <Head title={`${post.title} | ${siteTitle}`} />
         <h1>{post.title}</h1>
         <p
           style={{
