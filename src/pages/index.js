@@ -16,6 +16,8 @@ class BlogIndex extends React.Component {
         <Head title={siteTitle} />
         {posts.map(({node}) => {
           const title = get(node, 'title');
+          const excerpt = get(node, 'content.childMarkdownRemark.excerpt');
+
           return (
             <div key={node.slug}>
               <h3
@@ -25,6 +27,9 @@ class BlogIndex extends React.Component {
               >
                 <Link to={`/posts/${node.slug}`}>{title}</Link>
               </h3>
+              <div>
+                {excerpt}
+              </div>
             </div>
           )
         })}
@@ -47,6 +52,11 @@ export const pageQuery = graphql`
         node {
           title
           slug
+          content {
+            childMarkdownRemark {
+              excerpt(pruneLength: 320)
+            }
+          }
         }
       }
     }

@@ -16,6 +16,7 @@ class Template extends React.Component {
             ...scale(1.5),
             marginBottom: rhythm(1.5),
             marginTop: 0,
+            borderBottom: '1px solid #ddd'
           }}
         >
           <Link
@@ -57,7 +58,7 @@ class Template extends React.Component {
         style={{
           marginLeft: 'auto',
           marginRight: 'auto',
-          maxWidth: rhythm(24),
+          maxWidth: rhythm(42),
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
