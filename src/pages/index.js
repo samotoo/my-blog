@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link, graphql} from 'gatsby';
 import get from 'lodash/get';
+import {rhythm} from '../utils/typography';
 import Layout from '../components/layout';
 import Head from '../components/head';
-import {rhythm} from '../utils/typography';
-import icon32 from '../../static/logo/favicon-32.png';
+import DateTime from '../components/date-time';
+import CalendarIcon from 'react-icons/lib/fa/calendar-plus-o';
 
 class BlogIndex extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class BlogIndex extends React.Component {
         {posts.map(({node}) => {
           const title = get(node, 'title');
           const excerpt = get(node, 'content.childMarkdownRemark.excerpt');
+          const createdAt = get(node, 'createdAt');
 
           return (
             <div key={node.slug}>
@@ -27,6 +29,17 @@ class BlogIndex extends React.Component {
               >
                 <Link to={`/posts/${node.slug}`}>{title}</Link>
               </h3>
+              <div style={{
+                fontSize: '0.85rem',
+                paddingTop: '10px',
+                paddingBottom: '14px'
+              }}>
+                <CalendarIcon style={{
+                  position: 'relative',
+                  marginRight: '5px'
+                }} />
+                <DateTime>{createdAt}</DateTime>
+              </div>
               <div>
                 {excerpt}
               </div>
@@ -57,6 +70,7 @@ export const pageQuery = graphql`
               excerpt(pruneLength: 320)
             }
           }
+          createdAt
         }
       }
     }
