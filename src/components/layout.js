@@ -64,6 +64,22 @@ class Template extends React.Component {
       >
         {header}
         {children}
+        <hr style={{
+          marginTop: '30px',
+          marginBottom: '5px',
+          border: 0,
+          height: '1px',
+          background: 'none',
+          backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))'
+        }} />
+        <div style={{textAlign: 'center', fontSize: '0.9rem'}}>
+          &copy; 2018 Leon <a href={'https://creativecommons.org/licenses/by-nc-sa/4.0/'}>CC BY-NC-SA 4.0</a>
+          <br />
+          Hosted on <a href={'https://www.netlify.com/'}>Netlify</a> |
+          Powered by <a href={'https://www.gatsbyjs.org/'}>Gatsby</a> & <a href={'https://www.contentful.com/'}>Contentful</a>
+          <br />
+          Theme inspired by <a href={'https://github.com/tufu9441/maupassant-hexo'}>Maupassant</a>
+        </div>
       </div>
     )
   }
