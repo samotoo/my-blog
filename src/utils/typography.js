@@ -13,7 +13,10 @@ githubTheme.overrideThemeStyles = () => ({
   },
   'a:hover': {
     textDecoration: 'none'
-  }
+  },
+  'h1': {
+    borderBottom: 'none'
+  },
 });
 
 delete githubTheme.googleFonts;
