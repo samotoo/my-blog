@@ -48,7 +48,8 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography',
       },
     },
+    `gatsby-plugin-styled-components`,
     // This plugin must be put in the last of the array.
-    `gatsby-plugin-netlify`
+    `gatsby-plugin-netlify`,
   ],
 };
