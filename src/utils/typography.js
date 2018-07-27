@@ -10,6 +10,9 @@ githubTheme.overrideThemeStyles = () => ({
     fontSize: '95%',
     paddingTop: '4px',
     paddingBottom: '8px'
+  },
+  'a:hover': {
+    textDecoration: 'none'
   }
 });
 

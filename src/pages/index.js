@@ -5,6 +5,7 @@ import {rhythm} from '../utils/typography';
 import Layout from '../components/layout';
 import Head from '../components/head';
 import DateTime from '../components/date-time';
+import ReadMore from '../components/read-more';
 import CalendarIcon from 'react-icons/lib/fa/calendar-plus-o';
 
 class BlogIndex extends React.Component {
@@ -36,12 +37,18 @@ class BlogIndex extends React.Component {
               }}>
                 <CalendarIcon style={{
                   position: 'relative',
+                  top: '-0.125em',
                   marginRight: '5px'
                 }} />
                 <DateTime>{createdAt}</DateTime>
               </div>
               <div>
                 {excerpt}
+              </div>
+              <div style={{paddingTop: '10px'}}>
+                <Link to={`/posts/${node.slug}`}>
+                  <ReadMore />
+                </Link>
               </div>
             </div>
           )
