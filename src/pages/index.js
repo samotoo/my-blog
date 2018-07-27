@@ -7,6 +7,7 @@ import Head from '../components/head';
 import DateTime from '../components/date-time';
 import ReadMore from '../components/read-more';
 import CalendarIcon from 'react-icons/lib/fa/calendar-plus-o';
+import CategoryIcon from 'react-icons/lib/fa/list';
 
 class BlogIndex extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class BlogIndex extends React.Component {
           const title = get(node, 'title');
           const excerpt = get(node, 'content.childMarkdownRemark.excerpt');
           const createdAt = get(node, 'createdAt');
+          const category = get(node, 'category.name');
 
           return (
             <div key={node.slug}>
@@ -41,6 +43,8 @@ class BlogIndex extends React.Component {
                   marginRight: '5px'
                 }} />
                 <DateTime>{createdAt}</DateTime>
+                <CategoryIcon style={{marginLeft: '10px', marginRight: '5px'}} />
+                <span>{category}</span>
               </div>
               <div>
                 {excerpt}
@@ -78,6 +82,9 @@ export const pageQuery = graphql`
             }
           }
           createdAt
+          category {
+            name
+          }
         }
       }
     }
