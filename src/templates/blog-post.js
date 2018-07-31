@@ -4,7 +4,6 @@ import BackToTop from '../components/back-to-top';
 import get from 'lodash/get'
 import {graphql} from 'gatsby';
 import Layout from '../components/layout';
-import {rhythm} from '../utils/typography';
 import CalendarIcon from "react-icons/lib/fa/calendar-plus-o";
 import DateTime from "../components/date-time";
 import CategoryIcon from "react-icons/lib/fa/list";
@@ -47,13 +46,13 @@ class BlogPostTemplate extends React.Component {
 export default BlogPostTemplate;
 
 export const pageQuery = graphql`
-  query blogPostBySlug($slug: String!) {
+  query blogPostById($id: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    contentfulPost(slug: {eq: $slug}) {
+    contentfulPost(contentful_id: {eq: $id}) {
       title
       createdAt
       category {

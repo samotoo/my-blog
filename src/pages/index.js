@@ -8,6 +8,7 @@ import DateTime from '../components/date-time';
 import ReadMore from '../components/read-more';
 import CalendarIcon from 'react-icons/lib/fa/calendar-plus-o';
 import CategoryIcon from 'react-icons/lib/fa/list';
+import {getSlug} from '../utils/helpers';
 
 class BlogIndex extends React.Component {
   render() {
@@ -22,15 +23,16 @@ class BlogIndex extends React.Component {
           const excerpt = get(node, 'content.childMarkdownRemark.excerpt');
           const createdAt = get(node, 'createdAt');
           const category = get(node, 'category.name');
+          const slug = getSlug(title);
 
           return (
-            <div key={node.slug}>
+            <div key={slug}>
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <Link to={`/posts/${node.slug}`}>{title}</Link>
+                <Link to={`/posts/${slug}`}>{title}</Link>
               </h3>
               <div style={{
                 fontSize: '0.85rem',
@@ -50,7 +52,7 @@ class BlogIndex extends React.Component {
                 {excerpt}
               </div>
               <div style={{paddingTop: '10px'}}>
-                <Link to={`/posts/${node.slug}`}>
+                <Link to={`/posts/${slug}`}>
                   <ReadMore />
                 </Link>
               </div>
@@ -75,7 +77,6 @@ export const pageQuery = graphql`
       edges {
         node {
           title
-          slug
           content {
             childMarkdownRemark {
               excerpt(pruneLength: 320)
