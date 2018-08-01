@@ -71,7 +71,7 @@ class Template extends React.Component {
           background: 'none',
           backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))'
         }} />
-        <div style={{textAlign: 'center', fontSize: '0.9rem'}}>
+        <div style={{textAlign: 'center', fontSize: '0.9rem', marginTop: '15px'}}>
           &copy; 2018 Leon <a href={'https://creativecommons.org/licenses/by-nc-sa/4.0/'}>CC BY-NC-SA 4.0</a>
           <br />
           Hosted on <a href={'https://www.netlify.com/'}>Netlify</a> |
