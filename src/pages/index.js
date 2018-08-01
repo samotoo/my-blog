@@ -44,9 +44,9 @@ class BlogIndex extends React.Component {
                   top: '-0.125em',
                   marginRight: '5px'
                 }} />
-                <DateTime>{createdAt}</DateTime>
+                <DateTime fromNowDuring={24 * 60 * 60 * 1000}>{createdAt}</DateTime>
                 <CategoryIcon style={{marginLeft: '10px', marginRight: '5px'}} />
-                <span>{category}</span>
+                <Link to={`/categories/${getSlug(category)}`}>{category}</Link>
               </div>
               <div>
                 {excerpt}

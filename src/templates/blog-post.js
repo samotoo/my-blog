@@ -2,11 +2,12 @@ import React from 'react'
 import Head from '../components/head';
 import BackToTop from '../components/back-to-top';
 import get from 'lodash/get'
-import {graphql} from 'gatsby';
+import {graphql, Link} from 'gatsby';
 import Layout from '../components/layout';
 import CalendarIcon from "react-icons/lib/fa/calendar-plus-o";
 import DateTime from "../components/date-time";
 import CategoryIcon from "react-icons/lib/fa/list";
+import {getSlug} from "../utils/helpers";
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -27,9 +28,9 @@ class BlogPostTemplate extends React.Component {
             top: '-0.125em',
             marginRight: '5px'
           }} />
-          <DateTime>{createdAt}</DateTime>
+          <DateTime fromNowDuring={24 * 60 * 60 * 1000}>{createdAt}</DateTime>
           <CategoryIcon style={{marginLeft: '10px', marginRight: '5px'}} />
-          <span>{category}</span>
+          <Link to={`/categories/${getSlug(category)}`}>{category}</Link>
         </div>
         <hr style={{
           borderBottom: '1px dashed hsla(0,0%,0%,0.2)',

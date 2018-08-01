@@ -25,8 +25,8 @@ function getSlug(name) {
 }
 
 
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+exports.createPages = ({graphql, actions}) => {
+  const {createPage} = actions;
   return new Promise((resolve, reject) => {
     resolve(
       graphql(
@@ -36,6 +36,14 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   title
+                  contentful_id
+                }
+              }
+            }
+            allContentfulCategory {
+              edges {
+                node {
+                  name
                   contentful_id
                 }
               }
@@ -64,7 +72,19 @@ exports.createPages = ({ graphql, actions }) => {
               id: edge.node.contentful_id
             },
           })
-        })
+        });
+
+        // Create category pages.
+        const categoryTemplate = path.resolve('./src/templates/category.js');
+        _.forEach(result.data.allContentfulCategory.edges, edge => {
+          createPage({
+            path: `/categories/${getSlug(edge.node.name)}/`,
+            component: categoryTemplate,
+            context: {
+              id: edge.node.contentful_id
+            }
+          })
+        });
       })
     )
   })

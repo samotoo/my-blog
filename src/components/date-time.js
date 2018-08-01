@@ -12,9 +12,13 @@ Moment.globalTimezone = 'Asia/Shanghai';
 Moment.globalElement = 'span';
 
 class DateTime extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <Moment fromNowDuring={24 * 60 * 60 * 1000}>{this.props.children}</Moment>
+      <Moment {...this.props}>{this.props.children}</Moment>
     )
   }
 }
