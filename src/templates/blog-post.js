@@ -1,13 +1,13 @@
-import React from 'react'
-import Head from '../components/head'
-import BackToTop from '../components/back-to-top'
-import get from 'lodash/get'
-import { graphql, Link } from 'gatsby'
-import Layout from '../components/layout'
-import CalendarIcon from 'react-icons/lib/fa/calendar-plus-o'
-import DateTime from '../components/date-time'
-import CategoryIcon from 'react-icons/lib/fa/list'
-import { getSlug } from '../utils/helpers'
+import React from 'react';
+import Head from '../components/head';
+import BackToTop from '../components/back-to-top';
+import get from 'lodash/get';
+import { graphql, Link } from 'gatsby';
+import Layout from '../components/layout';
+import CalendarIcon from 'react-icons/lib/fa/calendar-plus-o';
+import DateTime from '../components/date-time';
+import CategoryIcon from 'react-icons/lib/fa/list';
+import { getSlug, LEAN_CLOUD_APP_ID, LEAN_CLOUD_APP_KEY } from '../utils/helpers';
 
 class BlogPostTemplate extends React.Component {
   componentDidMount() {
@@ -19,8 +19,8 @@ class BlogPostTemplate extends React.Component {
     const Valine = require('valine');
     new Valine({
       el: '#vcomments',
-      appId: '12BFWtsWfSLN9XaKG5NDqlGd-gzGzoHsz',
-      appKey: 'hcSnDohUOmgOV7MDQ4E4cKGo',
+      appId: LEAN_CLOUD_APP_ID,
+      appKey: LEAN_CLOUD_APP_KEY,
       placeholder: '随便写点啥吧',
       meta: ['nick', 'mail'],
       // Gatsby uses react-router to manage path, so we can rely on it to get
@@ -34,10 +34,10 @@ class BlogPostTemplate extends React.Component {
   }
 
   render() {
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-    const post = this.props.data.contentfulPost
-    const createdAt = get(post, 'createdAt')
-    const category = get(post, 'category.name')
+    const siteTitle = get(this.props, 'data.site.siteMetadata.title');
+    const post = this.props.data.contentfulPost;
+    const createdAt = get(post, 'createdAt');
+    const category = get(post, 'category.name');
 
     return (
       <Layout location={this.props.location}>
@@ -61,14 +61,15 @@ class BlogPostTemplate extends React.Component {
           marginBottom: '20px',
         }}/>
         <div dangerouslySetInnerHTML={{ __html: post.content.childMarkdownRemark.html }}/>
-        <div style={{marginTop: '3rem'}} id={'vcomments'} />
+        <span className={'vnum'}/>
+        <div style={{ marginTop: '3rem' }} id={'vcomments'}/>
         <BackToTop/>
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query blogPostById($id: String!) {
@@ -90,4 +91,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

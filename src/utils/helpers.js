@@ -7,10 +7,10 @@ export function getSlug(name) {
   const regexLetterNum = XRegExp('\\p{L}|\\p{N}');
   let result = '';
 
-  each(name, function (char, index) {
+  each(name, function(char, index) {
     if (regexLetterNum.test(char)) {
       result += char;
-    } else if (!regexLetterNum.test(char) && index != 0) {
+    } else if (!regexLetterNum.test(char) && index !== 0) {
       // If the first character is not a letter or number, just drop it.
       result += '-';
     }
@@ -21,3 +21,6 @@ export function getSlug(name) {
 
   return result;
 }
+
+export const LEAN_CLOUD_APP_ID = '12BFWtsWfSLN9XaKG5NDqlGd-gzGzoHsz';
+export const LEAN_CLOUD_APP_KEY = 'hcSnDohUOmgOV7MDQ4E4cKGo';
