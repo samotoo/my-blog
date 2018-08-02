@@ -15,7 +15,8 @@ class Template extends React.Component {
             ...scale(1.5),
             marginBottom: rhythm(1.5),
             marginTop: 0,
-            borderBottom: '1px solid #ddd'
+            borderBottom: '1px solid #ddd',
+            paddingBottom: '1rem',
           }}
         >
           <Link
