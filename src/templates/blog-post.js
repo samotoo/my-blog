@@ -16,7 +16,7 @@ class BlogPostTemplate extends React.Component {
     // think of so far.
     // Refer to https://github.com/gatsbyjs/gatsby/issues/309, Valine accesses
     // window.
-    const Valine = require('Valine');
+    const Valine = require('valine');
     new Valine({
       el: '#vcomments',
       appId: '12BFWtsWfSLN9XaKG5NDqlGd-gzGzoHsz',
