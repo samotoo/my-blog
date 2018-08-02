@@ -59,7 +59,7 @@ class BlogPostTemplate extends React.Component {
           marginBottom: '20px',
         }}/>
         <div dangerouslySetInnerHTML={{ __html: post.content.childMarkdownRemark.html }}/>
-        <div style={{marginTop: '3rem'}} id={'vcomments'}></div>
+        <div style={{marginTop: '3rem'}} id={'vcomments'} />
         <BackToTop/>
       </Layout>
     )
