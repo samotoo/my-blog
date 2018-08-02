@@ -8,13 +8,15 @@ import CalendarIcon from 'react-icons/lib/fa/calendar-plus-o'
 import DateTime from '../components/date-time'
 import CategoryIcon from 'react-icons/lib/fa/list'
 import { getSlug } from '../utils/helpers'
-import Valine from 'valine'
 
 class BlogPostTemplate extends React.Component {
   componentDidMount() {
     // Load valine after blog post component is mounted. Maybe there's a more
     // elegant way to integrate it with react, but this the best solution I can
     // think of so far.
+    // Refer to https://github.com/gatsbyjs/gatsby/issues/309, Valine accesses
+    // window.
+    const Valine = require('Valine');
     new Valine({
       el: '#vcomments',
       appId: '12BFWtsWfSLN9XaKG5NDqlGd-gzGzoHsz',
