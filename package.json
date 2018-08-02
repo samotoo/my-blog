@@ -30,6 +30,7 @@
     "gatsby-source-filesystem": "next",
     "gatsby-transformer-remark": "next",
     "gatsby-transformer-sharp": "next",
+    "leancloud-storage": "^3.9.0",
     "lodash": "^4.17.5",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.21",
@@ -47,6 +48,7 @@
     "typeface-montserrat": "0.0.43",
     "typography": "^0.16.17",
     "typography-theme-github": "^0.15.10",
+    "valine": "^1.3.0",
     "xregexp": "^4.2.0"
   },
   "devDependencies": {
