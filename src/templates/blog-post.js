@@ -26,8 +26,10 @@ class BlogPostTemplate extends React.Component {
       // Gatsby uses react-router to manage path, so we can rely on it to get
       // the correct pathname. By default valine uses window.location.pathname,
       // it is strange that it sometimes cannot get the correct path. I guess
-      // it is related to react integration.
-      path: this.props.location.pathname,
+      // it is related to react integration. Besides, need to remove the ending
+      // slash if exists, the URL with or without the slash should be treated
+      // equally.
+      path: this.props.location.pathname.replace(/\/$/, ''),
     });
   }
 
