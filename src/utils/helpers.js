@@ -22,5 +22,14 @@ export function getSlug(name) {
   return result;
 }
 
+// Get the path used by valine according to the raw URL path.
+export function getValinePath(rawPath) {
+  let result = rawPath;
+  // Meed to remove the ending slash if exists, the URL with or without the
+  // slash should be treated equally.
+  result = result.replace(/\/$/, '');
+  return result;
+}
+
 export const LEAN_CLOUD_APP_ID = '12BFWtsWfSLN9XaKG5NDqlGd-gzGzoHsz';
 export const LEAN_CLOUD_APP_KEY = 'hcSnDohUOmgOV7MDQ4E4cKGo';

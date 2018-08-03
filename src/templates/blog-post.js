@@ -7,9 +7,16 @@ import Layout from '../components/layout';
 import CalendarIcon from 'react-icons/lib/fa/calendar-plus-o';
 import DateTime from '../components/date-time';
 import CategoryIcon from 'react-icons/lib/fa/list';
-import { getSlug, LEAN_CLOUD_APP_ID, LEAN_CLOUD_APP_KEY } from '../utils/helpers';
+import CommentIcon from 'react-icons/lib/fa/commenting-o';
+import { getSlug, LEAN_CLOUD_APP_ID, LEAN_CLOUD_APP_KEY, getValinePath } from '../utils/helpers';
 
 class BlogPostTemplate extends React.Component {
+  constructor(props) {
+    super(props);
+    this.valinePath = getValinePath(props.location.pathname);
+  }
+
+
   componentDidMount() {
     // Load valine after blog post component is mounted. Maybe there's a more
     // elegant way to integrate it with react, but this the best solution I can
@@ -26,10 +33,8 @@ class BlogPostTemplate extends React.Component {
       // Gatsby uses react-router to manage path, so we can rely on it to get
       // the correct pathname. By default valine uses window.location.pathname,
       // it is strange that it sometimes cannot get the correct path. I guess
-      // it is related to react integration. Besides, need to remove the ending
-      // slash if exists, the URL with or without the slash should be treated
-      // equally.
-      path: this.props.location.pathname.replace(/\/$/, ''),
+      // it is related to react integration.
+      path: this.valinePath,
     });
   }
 
@@ -54,6 +59,13 @@ class BlogPostTemplate extends React.Component {
           <DateTime fromNowDuring={24 * 60 * 60 * 1000}>{createdAt}</DateTime>
           <CategoryIcon style={{ marginLeft: '10px', marginRight: '5px' }}/>
           <Link to={`/categories/${getSlug(category)}`}>{category}</Link>
+          <CommentIcon style={{
+            marginLeft: '10px',
+            marginRight: '5px',
+            position: 'relative',
+            top: '-0.125em',
+          }} />
+          <a href={'#vcomments'}><span className="valine-comment-count" data-xid={this.valinePath}/></a>
         </div>
         <hr style={{
           borderBottom: '1px dashed hsla(0,0%,0%,0.2)',
@@ -61,7 +73,6 @@ class BlogPostTemplate extends React.Component {
           marginBottom: '20px',
         }}/>
         <div dangerouslySetInnerHTML={{ __html: post.content.childMarkdownRemark.html }}/>
-        <span className={'vnum'}/>
         <div style={{ marginTop: '3rem' }} id={'vcomments'}/>
         <BackToTop/>
       </Layout>
