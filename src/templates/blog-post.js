@@ -29,7 +29,6 @@ class BlogPostTemplate extends React.Component {
       appId: LEAN_CLOUD_APP_ID,
       appKey: LEAN_CLOUD_APP_KEY,
       placeholder: '随便写点啥吧',
-      meta: ['nick', 'mail'],
       // Gatsby uses react-router to manage path, so we can rely on it to get
       // the correct pathname. By default valine uses window.location.pathname,
       // it is strange that it sometimes cannot get the correct path. I guess
