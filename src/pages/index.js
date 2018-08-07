@@ -1,14 +1,14 @@
 import React from 'react';
-import {Link, graphql} from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import get from 'lodash/get';
-import {rhythm} from '../utils/typography';
+import { rhythm } from '../utils/typography';
 import Layout from '../components/layout';
 import Head from '../components/head';
 import DateTime from '../components/date-time';
 import ReadMore from '../components/read-more';
 import CalendarIcon from 'react-icons/lib/fa/calendar-plus-o';
-import CategoryIcon from 'react-icons/lib/fa/list';
-import {getSlug} from '../utils/helpers';
+import CategoryIcon from 'react-icons/lib/fa/folder-open-o';
+import { getSlug } from '../utils/helpers';
 
 class BlogIndex extends React.Component {
   render() {
@@ -18,7 +18,7 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location}>
         <Head title={siteTitle} />
-        {posts.map(({node}) => {
+        {posts.map(({ node }) => {
           const title = get(node, 'title');
           const excerpt = get(node, 'content.childMarkdownRemark.excerpt');
           const createdAt = get(node, 'createdAt');
@@ -26,7 +26,7 @@ class BlogIndex extends React.Component {
           const slug = getSlug(title);
 
           return (
-            <div style={{marginBottom: '3rem'}} key={slug}>
+            <div style={{ marginBottom: '3rem' }} key={slug}>
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
@@ -37,34 +37,39 @@ class BlogIndex extends React.Component {
               <div style={{
                 fontSize: '0.85rem',
                 paddingTop: '10px',
-                paddingBottom: '14px'
+                paddingBottom: '14px',
               }}>
                 <CalendarIcon style={{
                   position: 'relative',
                   top: '-0.125em',
-                  marginRight: '5px'
+                  marginRight: '5px',
                 }} />
                 <DateTime fromNowDuring={24 * 60 * 60 * 1000}>{createdAt}</DateTime>
-                <CategoryIcon style={{marginLeft: '10px', marginRight: '5px'}} />
+                <CategoryIcon style={{
+                  position: 'relative',
+                  top: '-0.125em',
+                  marginLeft: '10px',
+                  marginRight: '5px',
+                }} />
                 <Link to={`/categories/${getSlug(category)}`}>{category}</Link>
               </div>
               <div>
                 {excerpt}
               </div>
-              <div style={{paddingTop: '10px'}}>
+              <div style={{ paddingTop: '10px' }}>
                 <Link to={`/posts/${slug}`}>
                   <ReadMore />
                 </Link>
               </div>
             </div>
-          )
+          );
         })}
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query IndexQuery {
