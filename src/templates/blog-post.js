@@ -12,7 +12,7 @@ import TagIcon from 'react-icons/lib/fa/tag';
 import { getSlug, LEAN_CLOUD_APP_ID, LEAN_CLOUD_APP_KEY, getValinePath } from '../utils/helpers';
 import styled from 'styled-components';
 
-const TagLink  = styled(Link)`
+const TagLink = styled(Link)`
   font-size: 90%;
   margin-right: 8px;
 `;
@@ -54,7 +54,7 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout location={this.props.location}>
         <Head title={`${post.title} | ${siteTitle}`} />
-        <h1 style={{ marginBottom: '0' }}>{post.title}</h1>
+        <h1 style={{ marginTop: '0' }}>{post.title}</h1>
         <div style={{
           fontSize: '0.85rem',
         }}>

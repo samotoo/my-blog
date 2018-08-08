@@ -31,3 +31,5 @@ if (process.env.NODE_ENV !== 'production') {
 export default typography;
 export const rhythm = typography.rhythm;
 export const scale = typography.scale;
+// The base font size of the github theme is 16px.
+export const BASE_FONT_SIZE = 16;
