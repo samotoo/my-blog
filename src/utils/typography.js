@@ -11,9 +11,6 @@ githubTheme.overrideThemeStyles = () => ({
     paddingTop: '4px',
     paddingBottom: '8px'
   },
-  'a:hover': {
-    textDecoration: 'none'
-  },
   'h1': {
     borderBottom: 'none'
   },

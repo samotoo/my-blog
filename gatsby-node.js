@@ -12,7 +12,7 @@ function getSlug(name) {
   _.forEach(name, function (char, index) {
     if (regexLetterNum.test(char)) {
       result += char;
-    } else if (!regexLetterNum.test(char) && index != 0) {
+    } else if (!regexLetterNum.test(char) && index !== 0) {
       // If the first character is not a letter or number, just drop it.
       result += '-';
     }
@@ -41,6 +41,14 @@ exports.createPages = ({graphql, actions}) => {
               }
             }
             allContentfulCategory {
+              edges {
+                node {
+                  name
+                  contentful_id
+                }
+              }
+            }
+            allContentfulTag {
               edges {
                 node {
                   name
@@ -80,6 +88,18 @@ exports.createPages = ({graphql, actions}) => {
           createPage({
             path: `/categories/${getSlug(edge.node.name)}/`,
             component: categoryTemplate,
+            context: {
+              id: edge.node.contentful_id
+            }
+          })
+        });
+
+        // Create tag pages.
+        const tagTemplate = path.resolve('./src/templates/tag.js');
+        _.forEach(result.data.allContentfulTag.edges, edge => {
+          createPage({
+            path: `/tags/${getSlug(edge.node.name)}/`,
+            component: tagTemplate,
             context: {
               id: edge.node.contentful_id
             }

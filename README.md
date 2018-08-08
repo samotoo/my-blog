@@ -9,10 +9,11 @@ My personal blog (just the source code) powered by [Gatsby](https://github.com/g
   - Category is not nested (only one level)
   - Can display all posts of a category, grouped by year
 - User comments system powered by [Valine](https://valine.js.org/) and [LeanCloud](https://leancloud.cn/)
+- Tags
+  - One post can have multiple tags, multiple posts can share the same tag
 
 ## Todos
 - Styles
-- Tags
 - Archive
 - Pagination
 - RSS feed

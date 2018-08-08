@@ -6,9 +6,16 @@ import { graphql, Link } from 'gatsby';
 import Layout from '../components/layout';
 import CalendarIcon from 'react-icons/lib/fa/calendar-plus-o';
 import DateTime from '../components/date-time';
-import CategoryIcon from 'react-icons/lib/fa/list';
+import CategoryIcon from 'react-icons/lib/fa/folder-open-o';
 import CommentIcon from 'react-icons/lib/fa/commenting-o';
+import TagIcon from 'react-icons/lib/fa/tag';
 import { getSlug, LEAN_CLOUD_APP_ID, LEAN_CLOUD_APP_KEY, getValinePath } from '../utils/helpers';
+import styled from 'styled-components';
+
+const TagLink  = styled(Link)`
+  font-size: 90%;
+  margin-right: 8px;
+`;
 
 class BlogPostTemplate extends React.Component {
   constructor(props) {
@@ -42,10 +49,11 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.contentfulPost;
     const createdAt = get(post, 'createdAt');
     const category = get(post, 'category.name');
+    const tags = get(post, 'tags');
 
     return (
       <Layout location={this.props.location}>
-        <Head title={`${post.title} | ${siteTitle}`}/>
+        <Head title={`${post.title} | ${siteTitle}`} />
         <h1 style={{ marginBottom: '0' }}>{post.title}</h1>
         <div style={{
           fontSize: '0.85rem',
@@ -54,9 +62,16 @@ class BlogPostTemplate extends React.Component {
             position: 'relative',
             top: '-0.125em',
             marginRight: '5px',
-          }}/>
+          }} />
           <DateTime fromNowDuring={24 * 60 * 60 * 1000}>{createdAt}</DateTime>
-          <CategoryIcon style={{ marginLeft: '10px', marginRight: '5px' }}/>
+          <CategoryIcon
+            style={{
+              marginLeft: '10px',
+              marginRight: '5px',
+              position: 'relative',
+              top: '-0.05em',
+            }}
+          />
           <Link to={`/categories/${getSlug(category)}`}>{category}</Link>
           <CommentIcon style={{
             marginLeft: '10px',
@@ -64,16 +79,30 @@ class BlogPostTemplate extends React.Component {
             position: 'relative',
             top: '-0.125em',
           }} />
-          <a href={'#vcomments'}><span className="valine-comment-count" data-xid={this.valinePath}/></a>
+          <a href={'#vcomments'}><span className="valine-comment-count" data-xid={this.valinePath} /></a>
         </div>
         <hr style={{
           borderBottom: '1px dashed hsla(0,0%,0%,0.2)',
           background: 'none',
           marginBottom: '20px',
-        }}/>
-        <div dangerouslySetInnerHTML={{ __html: post.content.childMarkdownRemark.html }}/>
-        <div style={{ marginTop: '3rem' }} id={'vcomments'}/>
-        <BackToTop/>
+        }} />
+        <div style={{ marginBottom: '1rem' }}
+             dangerouslySetInnerHTML={{ __html: post.content.childMarkdownRemark.html }} />
+        <div>{tags.map(tag => {
+          return (
+            <TagLink
+              key={tag.name}
+              to={`/tags/${getSlug(tag.name)}`}
+            >
+              <TagIcon style={{
+                position: 'relative',
+                top: '-0.125em',
+              }} />
+              {tag.name}
+            </TagLink>);
+        })}</div>
+        <div style={{ marginTop: '3rem' }} id={'vcomments'} />
+        <BackToTop />
       </Layout>
     );
   }
@@ -92,6 +121,9 @@ export const pageQuery = graphql`
       title
       createdAt
       category {
+        name
+      }
+      tags {
         name
       }
       content {
