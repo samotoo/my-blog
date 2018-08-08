@@ -9,10 +9,13 @@ githubTheme.overrideThemeStyles = () => ({
     textAlign: 'center',
     fontSize: '95%',
     paddingTop: '4px',
-    paddingBottom: '8px'
+    paddingBottom: '8px',
   },
   'h1': {
-    borderBottom: 'none'
+    borderBottom: 'none',
+  },
+  'hr': {
+    background: '#ddd',
   },
 });
 
@@ -25,6 +28,6 @@ if (process.env.NODE_ENV !== 'production') {
   typography.injectStyles();
 }
 
-export default typography
+export default typography;
 export const rhythm = typography.rhythm;
 export const scale = typography.scale;
