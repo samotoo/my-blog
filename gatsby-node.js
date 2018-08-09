@@ -9,7 +9,7 @@ function getSlug(name) {
   const regexLetterNum = XRegExp('\\p{L}|\\p{N}');
   let result = '';
 
-  _.forEach(name, function (char, index) {
+  _.forEach(name, function(char, index) {
     if (regexLetterNum.test(char)) {
       result += char;
     } else if (!regexLetterNum.test(char) && index !== 0) {
@@ -25,15 +25,23 @@ function getSlug(name) {
 }
 
 
-exports.createPages = ({graphql, actions}) => {
-  const {createPage} = actions;
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions;
   return new Promise((resolve, reject) => {
     resolve(
       graphql(
         `
           {
-            allContentfulPost(limit: 1000) {
+            allContentfulPost(
+              sort: {fields: [createdAt], order: DESC}
+              ) {
               edges {
+                next {
+                  title
+                }
+                previous {
+                  title
+                }
                 node {
                   title
                   contentful_id
@@ -57,11 +65,11 @@ exports.createPages = ({graphql, actions}) => {
               }
             }
           }
-        `
+        `,
       ).then(result => {
         if (result.errors) {
           console.log(result.errors);
-          reject(result.errors)
+          reject(result.errors);
         }
 
         // Create blog posts pages.
@@ -77,9 +85,14 @@ exports.createPages = ({graphql, actions}) => {
             path: `/posts/${getSlug(edge.node.title)}/`,
             component: postTemplate,
             context: {
-              id: edge.node.contentful_id
+              id: edge.node.contentful_id,
+              // Since the query is descending sorted by creation date, the
+              // previous post by date is actually the next node returned in
+              // graphql query, similarly for the next post by date.
+              previousTitle: _.get(edge, 'next.title'),
+              nextTitle: _.get(edge, 'previous.title'),
             },
-          })
+          });
         });
 
         // Create category pages.
@@ -89,9 +102,9 @@ exports.createPages = ({graphql, actions}) => {
             path: `/categories/${getSlug(edge.node.name)}/`,
             component: categoryTemplate,
             context: {
-              id: edge.node.contentful_id
-            }
-          })
+              id: edge.node.contentful_id,
+            },
+          });
         });
 
         // Create tag pages.
@@ -101,11 +114,11 @@ exports.createPages = ({graphql, actions}) => {
             path: `/tags/${getSlug(edge.node.name)}/`,
             component: tagTemplate,
             context: {
-              id: edge.node.contentful_id
-            }
-          })
+              id: edge.node.contentful_id,
+            },
+          });
         });
-      })
-    )
-  })
+      }),
+    );
+  });
 };

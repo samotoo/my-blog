@@ -9,6 +9,8 @@ import DateTime from '../components/date-time';
 import CategoryIcon from 'react-icons/lib/fa/folder-open-o';
 import CommentIcon from 'react-icons/lib/fa/commenting-o';
 import TagIcon from 'react-icons/lib/fa/tag';
+import PreviousIcon from 'react-icons/lib/fa/backward';
+import NextIcon from 'react-icons/lib/fa/forward';
 import { getSlug, LEAN_CLOUD_APP_ID, LEAN_CLOUD_APP_KEY, getValinePath } from '../utils/helpers';
 import styled from 'styled-components';
 
@@ -50,6 +52,8 @@ class BlogPostTemplate extends React.Component {
     const createdAt = get(post, 'createdAt');
     const category = get(post, 'category.name');
     const tags = get(post, 'tags');
+    const previousTitle = get(this.props, 'pageContext.previousTitle');
+    const nextTitle = get(this.props, 'pageContext.nextTitle');
 
     return (
       <Layout location={this.props.location}>
@@ -100,7 +104,40 @@ class BlogPostTemplate extends React.Component {
               }} />
               {tag.name}
             </TagLink>);
-        })}</div>
+        })}
+        </div>
+        <hr style={{ marginTop: '1rem' }} />
+        <div>
+
+          <span style={{
+            display: 'inline-block',
+            width: '50%',
+          }}>
+            {previousTitle &&
+            <Link to={`/posts/${getSlug(previousTitle)}`}>
+              <PreviousIcon style={{
+                position: 'relative',
+                top: '-0.125em',
+                marginRight: '3px',
+              }} />{previousTitle}
+            </Link>}
+          </span>
+
+          <span style={{
+            display: 'inline-block',
+            width: '50%',
+            textAlign: 'right',
+          }}>
+            {nextTitle &&
+            <Link to={`/posts/${getSlug(nextTitle)}`}>
+              <NextIcon style={{
+                position: 'relative',
+                top: '-0.125em',
+                marginRight: '3px',
+              }} />{nextTitle}
+            </Link>}
+          </span>
+        </div>
         <div style={{ marginTop: '3rem' }} id={'vcomments'} />
         <BackToTop />
       </Layout>
