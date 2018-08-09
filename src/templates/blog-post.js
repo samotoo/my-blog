@@ -25,13 +25,10 @@ class BlogPostTemplate extends React.Component {
     this.valinePath = getValinePath(props.location.pathname);
   }
 
-
-  componentDidMount() {
-    // Load valine after blog post component is mounted. Maybe there's a more
-    // elegant way to integrate it with react, but this the best solution I can
-    // think of so far.
-    // Refer to https://github.com/gatsbyjs/gatsby/issues/309, Valine accesses
-    // window.
+  // Refer to https://github.com/gatsbyjs/gatsby/issues/309, Valine accesses
+  // window.
+  initValine() {
+    console.log('initValine');
     const Valine = require('valine');
     new Valine({
       el: '#vcomments',
@@ -46,9 +43,29 @@ class BlogPostTemplate extends React.Component {
     });
   }
 
+  componentDidMount() {
+    // Load valine after blog post component is mounted. Maybe there's a more
+    // elegant way to integrate it with react, but this the best solution I can
+    // think of so far.
+    this.initValine();
+  }
+
+  componentDidUpdate(prevProps) {
+    const currentTitle = get(this.props, 'data.contentfulPost.title');
+    const previousTitle = get(prevProps, 'data.contentfulPost.title');
+    // Another place we may need to init valine, if the title changes, this
+    // component may just update but not re-mount, we may need to pass a key
+    // prop to this component to avoid this issue, but currently gatsby didn't
+    // provide a way to pass arbitrary props in createPage function.
+    if (currentTitle !== previousTitle) {
+      this.initValine();
+    }
+  }
+
   render() {
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
     const post = this.props.data.contentfulPost;
+    const title = get(post, 'title');
     const createdAt = get(post, 'createdAt');
     const category = get(post, 'category.name');
     const tags = get(post, 'tags');
@@ -57,8 +74,8 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location}>
-        <Head title={`${post.title} | ${siteTitle}`} />
-        <h1 style={{ marginTop: '0' }}>{post.title}</h1>
+        <Head title={`${title} | ${siteTitle}`} />
+        <h1 style={{ marginTop: '0' }}>{title}</h1>
         <div style={{
           fontSize: '0.85rem',
         }}>
