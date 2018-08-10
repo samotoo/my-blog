@@ -2,8 +2,29 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { rhythm, scale } from '../utils/typography';
 import Sidebar from './sidebar';
+import get from 'lodash/get';
 
 class Template extends React.Component {
+  componentDidMount() {
+    // This component is the common parent component. When the component is
+    // mounted, try to do the in page anchor jump, because the page may get
+    // refreshed.
+    const hash = get(this.props, 'location.hash');
+    if (hash) {
+      setTimeout(() => {
+        let id = hash.substring(1);
+        // DBCS characters are encoded in react-router hash, we need to decode
+        // it to query the element.
+        id = decodeURIComponent(id);
+
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView();
+        }
+      }, 0);
+    }
+  }
+
   render() {
     const { children } = this.props;
     const header = (
