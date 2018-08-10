@@ -17,6 +17,9 @@ githubTheme.overrideThemeStyles = () => ({
   'hr': {
     background: '#ddd',
   },
+  'body': {
+    backgroundColor: '#f4f5f5',
+  },
 });
 
 delete githubTheme.googleFonts;

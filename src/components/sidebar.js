@@ -75,10 +75,13 @@ class Sidebar extends React.Component {
           return (
             <div>
               <div style={{ marginBottom: '1.5em' }}>
-                <div>
+                <div style={{
+                  borderBottom: '1px solid #ddd',
+                  paddingBottom: '0.5em',
+                  marginBottom: '0.5em',
+                }}>
                   <CategoryIcon style={{ marginRight: '0.3em' }} />分类
                 </div>
-                <hr style={{ marginTop: '0.5em', marginBottom: '0.5em' }} />
                 {categoryEdges.map(edge => {
                     const category = edge.node;
                     const slug = getSlug(category.name);
@@ -91,10 +94,13 @@ class Sidebar extends React.Component {
                 )}
               </div>
               <div>
-                <div>
+                <div style={{
+                  borderBottom: '1px solid #ddd',
+                  paddingBottom: '0.5em',
+                  marginBottom: '0.5em',
+                }}>
                   <TagsIcon style={{ marginRight: '0.3em' }} />标签
                 </div>
-                <hr style={{ marginTop: '0.5em', marginBottom: '0.5em' }} />
                 <TagCloud
                   tags={tags}
                   minSize={BASE_FONT_SIZE * 0.5}
