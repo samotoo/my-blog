@@ -30,7 +30,7 @@ class CategoryTemplate extends React.Component {
               <ul>
                 {postsByYear[year].map(post => {
                   const slug = getSlug(post.title);
-                  const createDate = moment(post.createdAt).format('YYYY-MM-DD');
+                  const createDate = moment(post.createdAt).format('MM-DD');
                   return (
                     <li key={slug}>
                       {createDate}&nbsp;<Link to={`/posts/${slug}/`}>{post.title}</Link>

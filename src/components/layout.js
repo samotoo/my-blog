@@ -91,7 +91,8 @@ class Template extends React.Component {
           Powered by <a href={'https://www.gatsbyjs.org/'}>Gatsby</a> & <a
           href={'https://www.contentful.com/'}>Contentful</a>
           <br />
-          Theme inspired by <a href={'https://github.com/tufu9441/maupassant-hexo'}>Maupassant</a>
+          Theme inspired by <a href={'https://github.com/tufu9441/maupassant-hexo'}>Maupassant</a> & <a
+          href={'https://github.com/lewis-geek/hexo-theme-Aath'}>Aath</a>
         </div>
       </div>
     );
