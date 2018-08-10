@@ -20,11 +20,6 @@ const TagLink = styled(Link)`
 `;
 
 class BlogPostTemplate extends React.Component {
-  constructor(props) {
-    super(props);
-    this.valinePath = getValinePath(props.location.pathname);
-  }
-
   // Refer to https://github.com/gatsbyjs/gatsby/issues/309, Valine accesses
   // window.
   initValine() {
@@ -38,7 +33,7 @@ class BlogPostTemplate extends React.Component {
       // the correct pathname. By default valine uses window.location.pathname,
       // it is strange that it sometimes cannot get the correct path. I guess
       // it is related to react integration.
-      path: this.valinePath,
+      path: getValinePath(this.props.location.pathname),
     });
   }
 
@@ -99,7 +94,9 @@ class BlogPostTemplate extends React.Component {
             position: 'relative',
             top: '-0.125em',
           }} />
-          <a href={'#vcomments'}><span className="valine-comment-count" data-xid={this.valinePath} /></a>
+          <a href={'#vcomments'}>
+            <span className="valine-comment-count" data-xid={getValinePath(this.props.location.pathname)} />
+          </a>
         </div>
         <hr style={{
           borderBottom: '1px dashed hsla(0,0%,0%,0.2)',
