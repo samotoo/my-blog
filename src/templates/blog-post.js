@@ -23,13 +23,13 @@ class BlogPostTemplate extends React.Component {
   constructor(props) {
     super(props);
     this.valinePath = getValinePath(props.location.pathname);
+    this.Valine = require('valine');
   }
 
   // Refer to https://github.com/gatsbyjs/gatsby/issues/309, Valine accesses
   // window.
   initValine() {
-    const Valine = require('valine');
-    new Valine({
+    new this.Valine({
       el: '#vcomments',
       appId: LEAN_CLOUD_APP_ID,
       appKey: LEAN_CLOUD_APP_KEY,
@@ -47,6 +47,12 @@ class BlogPostTemplate extends React.Component {
     // elegant way to integrate it with react, but this the best solution I can
     // think of so far.
     this.initValine();
+  }
+
+  componentWillUnmount() {
+    if (this.Valine) {
+      delete this.Valine;
+    }
   }
 
   componentDidUpdate(prevProps) {
