@@ -2,6 +2,7 @@ const _ = require('lodash');
 const Promise = require('bluebird');
 const path = require('path');
 const XRegExp = require('xregexp');
+const fs = require('fs');
 
 // I have to duplicate this function (./src/utils/helpers) here because es6 is not supported in this file and I don't
 // want to make that module a commonjs module.
@@ -24,6 +25,10 @@ function getSlug(name) {
   return result;
 }
 
+exports.onPostBuild = () => {
+  // Copy the particles.js file into public folder so we refer to it in html.js.
+  fs.copyFileSync('./node_modules/particles.js/particles.js', './public/particles.js');
+};
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;

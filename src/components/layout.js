@@ -67,6 +67,8 @@ class Template extends React.Component {
             borderBottom: '1px solid #ddd',
             boxShadow: '0 2px 5px -2px rgba(0, 0, 0, 0.05)',
             marginBottom: rhythm(1.5),
+            position: 'relative',
+            zIndex: 1,
           }}
         >
           {header}
@@ -92,6 +94,8 @@ class Template extends React.Component {
               border: '1px solid #ddd',
               boxShadow: '0 2px 5px -2px rgba(0, 0, 0, 0.05)',
               marginRight: '1rem',
+              position: 'relative',
+              zIndex: 1,
             }}>
               {children}
             </div>
@@ -110,6 +114,8 @@ class Template extends React.Component {
               border: '1px solid #ddd',
               boxShadow: '0 2px 5px -2px rgba(0, 0, 0, 0.05)',
               marginLeft: '1rem',
+              position: 'relative',
+              zIndex: 1,
             }}>
               <Sidebar />
             </div>
@@ -122,15 +128,29 @@ class Template extends React.Component {
             background: 'none',
             backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))',
           }} />
-          <div style={{ textAlign: 'center', fontSize: '0.9rem', marginTop: '15px' }}>
-            &copy; 2018 Leon <a href={'https://creativecommons.org/licenses/by-nc-sa/4.0/'}>CC BY-NC-SA 4.0</a>
-            <br />
-            Hosted on <a href={'https://www.netlify.com/'}>Netlify</a> |
-            Powered by <a href={'https://www.gatsbyjs.org/'}>Gatsby</a> & <a
-            href={'https://www.contentful.com/'}>Contentful</a>
-            <br />
-            Theme inspired by <a href={'https://github.com/tufu9441/maupassant-hexo'}>Maupassant</a> & <a
-            href={'https://github.com/lewis-geek/hexo-theme-Aath'}>Aath</a>
+          <div
+            style={{
+              textAlign: 'center',
+              fontSize: '0.9rem',
+              marginTop: '15px',
+              marginBottom: '10px',
+            }}
+          >
+            <span
+              style={{
+                position: 'relative',
+                zIndex: '1',
+              }}
+            >
+              &copy; 2018 Leon <a href={'https://creativecommons.org/licenses/by-nc-sa/4.0/'}>CC BY-NC-SA 4.0</a>
+              <br />
+              Hosted on <a href={'https://www.netlify.com/'}>Netlify</a> |
+              Powered by <a href={'https://www.gatsbyjs.org/'}>Gatsby</a> & <a
+              href={'https://www.contentful.com/'}>Contentful</a>
+              <br />
+              Theme inspired by <a href={'https://github.com/tufu9441/maupassant-hexo'}>Maupassant</a> & <a
+              href={'https://github.com/lewis-geek/hexo-theme-Aath'}>Aath</a>
+            </span>
           </div>
         </div>
       </div>
